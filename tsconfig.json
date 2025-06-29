@@ -1,0 +1,23 @@
+{
+  "files": [],
+  "references": [{ "path": "packages/ui" }, { "path": "apps/editor" }],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ui/*": ["packages/ui/src/*"]
+    },
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "composite": true, // 可加可不加，根一般不 build
+    "noEmit": true
+  },
+  "exclude": ["node_modules", "dist"]
+}
