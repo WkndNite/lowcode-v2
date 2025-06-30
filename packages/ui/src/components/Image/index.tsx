@@ -1,26 +1,30 @@
+import { Image } from "antd";
 import type { ImageProps } from "./types";
 
-const Index: React.FC<ImageProps> = ({
+const ZmwImage: React.FC<ImageProps> = ({
   src,
-  alt = "",
   width = "100%",
-  height = "auto",
-  rounded = false,
-  border = false,
+  height = "300px",
+  link,
+  display = true,
 }) => {
+  if (!display) return null;
+
   return (
-    <img
-      src={src}
-      alt={alt}
-      style={{
-        width,
-        height,
-        borderRadius: rounded ? "8px" : 0,
-        border: border ? "1px solid #ccc" : "none",
-        objectFit: "cover",
-      }}
-    />
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      <Image
+        src={src}
+        alt=""
+        style={{
+          width,
+          height,
+          borderRadius: 8,
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
+    </a>
   );
 };
 
-export default Index;
+export default ZmwImage;

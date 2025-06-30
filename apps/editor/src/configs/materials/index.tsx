@@ -1,7 +1,7 @@
 import {
   BgColorsOutlined,
-  BorderOutlined,
   EditOutlined,
+  EllipsisOutlined,
   FundOutlined,
   InsertRowAboveOutlined,
   InsertRowLeftOutlined,
@@ -9,6 +9,7 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import type { ReactNode } from "react";
+import { ItemTypesKeys } from "../dnd/ItemTypes";
 import type { MaterialSchemasKeys, MaterialSchemasType } from "./schemas";
 
 export interface MaterialKeys {
@@ -42,6 +43,10 @@ export interface MaterialKeys {
    * 物料渲染时对应的组件名称
    */
   render: string;
+  /**
+   * 物料拖拽时的类型标识
+   */
+  dragType: ItemTypesKeys;
 }
 
 export const BaseMaterials: MaterialKeys[] = [
@@ -51,6 +56,7 @@ export const BaseMaterials: MaterialKeys[] = [
     render: "text",
     icon: <EditOutlined />,
     config: {},
+    dragType: ItemTypesKeys.TEXT,
   },
   {
     id: "",
@@ -58,6 +64,7 @@ export const BaseMaterials: MaterialKeys[] = [
     render: "image",
     icon: <PictureOutlined />,
     config: {},
+    dragType: ItemTypesKeys.IMAGE,
   },
   {
     id: "",
@@ -65,6 +72,7 @@ export const BaseMaterials: MaterialKeys[] = [
     render: "video",
     icon: <VideoCameraOutlined />,
     config: {},
+    dragType: ItemTypesKeys.VIDEO,
   },
   {
     id: "",
@@ -72,13 +80,15 @@ export const BaseMaterials: MaterialKeys[] = [
     render: "slider",
     icon: <FundOutlined />,
     config: {},
+    dragType: ItemTypesKeys.SLIDER,
   },
   {
     id: "",
     name: "留白",
     render: "blank",
-    icon: <BorderOutlined />,
+    icon: <EllipsisOutlined />,
     config: {},
+    dragType: ItemTypesKeys.BLANK,
   },
 ];
 
@@ -86,11 +96,12 @@ export const AdvancedMaterials: MaterialKeys[] = [
   {
     id: "",
     name: "多行",
-    render: "lines",
+    render: "rows",
     icon: <InsertRowAboveOutlined />,
     nestable: true,
     children: [],
     config: {},
+    dragType: ItemTypesKeys.ROWS,
   },
   {
     id: "",
@@ -100,6 +111,7 @@ export const AdvancedMaterials: MaterialKeys[] = [
     nestable: true,
     children: [],
     config: {},
+    dragType: ItemTypesKeys.COLUMNS,
   },
   {
     id: "",
@@ -109,6 +121,7 @@ export const AdvancedMaterials: MaterialKeys[] = [
     nestable: true,
     children: [],
     config: {},
+    dragType: ItemTypesKeys.CANVAS,
   },
 ];
 
@@ -119,6 +132,7 @@ export const CanvasMaterials: MaterialKeys[] = [
     render: "image",
     icon: <PictureOutlined />,
     config: {},
+    dragType: ItemTypesKeys.IMAGE,
   },
   {
     id: "",
@@ -126,5 +140,15 @@ export const CanvasMaterials: MaterialKeys[] = [
     render: "text",
     icon: <EditOutlined />,
     config: {},
+    dragType: ItemTypesKeys.TEXT,
   },
 ];
+
+export const AllMaterials: MaterialKeys[] = Array.from(
+  new Map(
+    [...BaseMaterials, ...AdvancedMaterials, ...CanvasMaterials].map((m) => [
+      m.render,
+      m,
+    ]),
+  ).values(),
+);

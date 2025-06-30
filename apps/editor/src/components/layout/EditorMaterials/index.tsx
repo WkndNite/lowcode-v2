@@ -3,6 +3,7 @@ import type { MenuProps } from "antd";
 import { Col, Collapse, type CollapseProps, Menu, Row } from "antd";
 import { useState } from "react";
 import "./index.less";
+import DraggableItem from "@/components/common/DraggableItem";
 import { AdvancedMaterials, BaseMaterials } from "@/configs/materials";
 
 type MaterialCategoryType = {
@@ -25,10 +26,10 @@ const materialMap: Record<string, CollapseProps["items"]> = {
         <Row gutter={[16, 16]}>
           {BaseMaterials.map((material) => (
             <Col span={8} key={material.name}>
-              <div className="material-item">
+              <DraggableItem type={material.dragType} className="material-item">
                 {material.icon}
                 <span>{material.name}</span>
-              </div>
+              </DraggableItem>
             </Col>
           ))}
         </Row>
@@ -41,10 +42,10 @@ const materialMap: Record<string, CollapseProps["items"]> = {
         <Row gutter={[16, 16]}>
           {AdvancedMaterials.map((material) => (
             <Col span={8} key={material.name}>
-              <div className="material-item">
+              <DraggableItem type={material.dragType} className="material-item">
                 {material.icon}
                 <span>{material.name}</span>
-              </div>
+              </DraggableItem>
             </Col>
           ))}
         </Row>
@@ -59,10 +60,10 @@ const materialMap: Record<string, CollapseProps["items"]> = {
         <Row gutter={[16, 16]}>
           {BaseMaterials.map((material) => (
             <Col span={8} key={material.name}>
-              <div className="material-item">
+              <DraggableItem type={material.dragType} className="material-item">
                 {material.icon}
                 <span>{material.name}</span>
-              </div>
+              </DraggableItem>
             </Col>
           ))}
         </Row>

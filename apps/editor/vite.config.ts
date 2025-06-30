@@ -16,7 +16,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@lowcode/ui": path.resolve(__dirname, "../../packages/ui/src"),
     },
   },
 });

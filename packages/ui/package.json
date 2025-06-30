@@ -3,19 +3,28 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
     }
   },
-  "scripts": {},
+  "scripts": {
+    "build:js": "vite build",
+    "build:dts": "tsc --emitDeclarationOnly -p tsconfig.json",
+    "build": "pnpm run build:js && pnpm run build:dts"
+  },
   "dependencies": {
     "@sinclair/typebox": "^0.34.37",
+    "antd": "^5.26.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@types/node": "^24.0.4",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",

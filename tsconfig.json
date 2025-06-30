@@ -11,9 +11,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "paths": {
-      "@ui/*": ["packages/ui/src/*"]
-    },
     "resolveJsonModule": true,
     "isolatedModules": true,
     "composite": true, // 可加可不加，根一般不 build

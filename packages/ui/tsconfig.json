@@ -1,15 +1,19 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "outDir": "dist",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist/types",
     "rootDir": "src",
+    "composite": true,  // 对于项目引用必需
+    "skipLibCheck": true,
+    "strict": true,
+    // 确保 baseUrl 和 paths 配置正确
     "baseUrl": ".",
-    "noEmit": false,
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
