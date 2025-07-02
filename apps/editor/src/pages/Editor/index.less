@@ -1,4 +1,17 @@
-.editor-page>main {
-    height: var(--editor-content-height);
+.editor-page {
+    height: 100vh;
+    // 整体加禁止滚动并渲染区单独加滚动
+    overflow: hidden;
+    // Navigator 和 Main 采用 Flex 布局
     display: flex;
+    flex-direction: column;
+
+    main {
+        // Materials/Render/Config 三个区域采用 Flex 布局
+        display: flex;
+        // 撑满 Navigator 的剩余空间
+        flex: 1;
+        // 给高度才能让 Render 滚动生效
+        height: var(--editor-content-height)
+    }
 }
