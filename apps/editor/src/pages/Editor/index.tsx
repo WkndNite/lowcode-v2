@@ -1,6 +1,6 @@
 import EditorMaterials from "@/components/layout/EditorMaterials";
 import EditHeader from "@/components/layout/EditorNavigator";
-import EditRender from "@/components/layout/EditorRender";
+import EditorRender from "@/components/layout/EditorRender";
 import "./index.less";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -15,7 +15,7 @@ const Editor = () => {
         </header>
         <main>
           <EditorMaterials />
-          <EditRender />
+          <EditorRender />
           <EditorConfig />
         </main>
       </DndProvider>

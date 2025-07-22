@@ -15,7 +15,8 @@
   "scripts": {
     "build:js": "vite build",
     "build:dts": "tsc --emitDeclarationOnly -p tsconfig.json",
-    "build": "pnpm run build:js && pnpm run build:dts"
+    "build": "pnpm run build:js && pnpm run build:dts",
+    "dev": "vite build --watch"
   },
   "dependencies": {
     "@sinclair/typebox": "^0.34.37",

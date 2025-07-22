@@ -18,4 +18,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    watch: {
+      // 监听UI包的变化
+      ignored: ["!../../packages/ui/dist/**/*"],
+    },
+  },
 });

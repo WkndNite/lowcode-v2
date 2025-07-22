@@ -19,7 +19,6 @@ const DraggableItem = ({ children, type, className }: DraggableItemProps) => {
     type: ItemTypes[type],
     item: {
       type,
-      children,
       render: AllMaterials.find((m) => m.dragType === type)?.render,
       component: Registry[type],
     },

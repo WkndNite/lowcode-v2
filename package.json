@@ -8,7 +8,9 @@
     "lint": "biome lint --write .",
     "check": "biome check --write .",
     "commit": "cz",
-    "dev:editor": "pnpm --filter editor dev"
+    "dev:editor": "pnpm --filter editor dev",
+    "dev:ui": "pnpm --filter @lowcode/ui dev",
+    "dev": "pnpm run dev:ui & pnpm run dev:editor"
   },
   "dependencies": {
     "react": "^19.1.0",
