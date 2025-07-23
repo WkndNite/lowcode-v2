@@ -1,5 +1,5 @@
 import type { ImageProps as AntImageProps } from "antd";
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
 
 export interface ImageProps {
   /** 图片地址 */

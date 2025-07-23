@@ -1,6 +1,6 @@
 import { GroupOutlined, MacCommandOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Col, Collapse, type CollapseProps, Image, Menu, Row } from "antd";
+import { Col, Collapse, type CollapseProps, Menu, Row } from "antd";
 import { useState } from "react";
 import "./index.less";
 import DraggableItem from "@/components/common/DraggableItem";

@@ -5,8 +5,8 @@ type ComponentItem = {
   id: string;
   type: string;
   name: string;
-  component: any;
-  props?: Record<string, any>;
+  component: React.ReactNode;
+  props?: Record<string, unknown>;
 };
 
 type EditorState = {
@@ -33,7 +33,7 @@ type EditorState = {
    * @param id 组件ID
    * @param newProps 新的属性对象
    */
-  updateComponentProps: (id: string, newProps: Record<string, any>) => void;
+  updateComponentProps: (id: string, newProps: Record<string, unknown>) => void;
 };
 
 export const useEditorStore = create<EditorState>((set) => ({

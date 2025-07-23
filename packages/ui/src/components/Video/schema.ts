@@ -1,30 +1,31 @@
 import { type Static, Type } from "@sinclair/typebox";
 import { getSchema } from "@/utils/schema";
 
+// 显示状态
 const display = Type.Boolean({
   code: "config-switch",
-  title: "设备",
+  title: "显示",
   default: true,
-  description: "控制使用的什么设备",
+  description: "控制视频是否显示",
 });
-const src = Type.String({
+
+// 视频地址 - 对应Image的src属性
+export const src = Type.String({
   code: "config-files",
-  title: "图片地址",
+  title: "视频地址",
   default: "",
-  placeholder: "请上传图片或输入URL",
+  placeholder: "请上传视频或输入URL",
 });
-const link = Type.String({
-  code: "config-input",
-  title: "跳转链接",
-  default: "",
-  placeholder: "点击图片跳转的链接地址",
-});
+
+// 宽度属性
 const width = Type.String({
   code: "config-input",
   title: "宽度",
   default: "100%",
   placeholder: "支持px、%等单位",
 });
+
+// 高度属性
 const height = Type.String({
   code: "config-input",
   title: "高度",
@@ -32,7 +33,8 @@ const height = Type.String({
   placeholder: "支持px、%等单位",
 });
 
-const objectFit = Type.Union(
+// 适应方式 - 与Image的objectFit完全一致
+export const objectFit = Type.Union(
   [
     Type.Literal("cover"),
     Type.Literal("contain"),
@@ -54,22 +56,31 @@ const objectFit = Type.Union(
   },
 );
 
-const alt = Type.String({
+// 跳转链接
+const link = Type.String({
   code: "config-input",
-  title: "替代文本",
+  title: "跳转链接",
   default: "",
-  placeholder: "图片无法显示时的替代文本",
+  placeholder: "点击视频跳转的链接地址",
 });
 
+// 视频控制栏
+const controls = Type.Boolean({
+  code: "config-switch",
+  title: "显示控制栏",
+  default: true,
+});
+
+// 组合所有属性
 const schema = Type.Object({
   display: getSchema(display),
   src: getSchema(src),
-  alt: getSchema(alt),
   width: getSchema(width),
   height: getSchema(height),
   objectFit: getSchema(objectFit),
   link: getSchema(link),
+  controls: getSchema(controls),
 });
 
-export const ImageSchema = schema;
-export type ImageSchemaType = Static<typeof schema>;
+export const VideoSchema = schema;
+export type VideoSchemaType = Static<typeof schema>;

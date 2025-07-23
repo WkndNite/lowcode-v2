@@ -1,10 +1,10 @@
-import { ZmwImage } from "@lowcode/ui";
+import { ZmwImage, ZmwText, ZmwVideo } from "@lowcode/ui";
 import { ItemTypesKeys } from "@/configs/dnd/ItemTypes";
 
 export const Registry = {
-  [ItemTypesKeys.TEXT]: ZmwImage,
+  [ItemTypesKeys.TEXT]: ZmwText,
   [ItemTypesKeys.IMAGE]: ZmwImage,
-  [ItemTypesKeys.VIDEO]: ZmwImage,
+  [ItemTypesKeys.VIDEO]: ZmwVideo,
   [ItemTypesKeys.SLIDER]: ZmwImage,
   [ItemTypesKeys.BLANK]: ZmwImage,
   [ItemTypesKeys.ROWS]: ZmwImage,

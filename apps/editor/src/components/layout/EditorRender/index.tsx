@@ -32,10 +32,7 @@ const EditRender = () => {
         type: item.type,
         name: item.render,
         component: item.component,
-        props: {
-          width: "1000px",
-          link: "https://www.baidu.com",
-        },
+        props: {},
       });
     },
     collect: (monitor) => ({
