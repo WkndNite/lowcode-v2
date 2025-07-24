@@ -25,7 +25,7 @@ const direction = Type.Union(
       { label: "水平", value: "horizontal" },
       { label: "垂直", value: "vertical" },
     ],
-  }
+  },
 );
 
 const schema = Type.Object({

@@ -1,17 +1,14 @@
 import { Carousel } from "antd";
-import { fallback as defaultFallback } from "../Image/fallback";
+import { DEFAULT_FALLBACK_IMAGE, DEFAULT_SLIDER_IMAGES } from "@/configs";
 import type { SliderProps } from "./types";
 
 const ZmwSlider: React.FC<SliderProps> = ({
-  src = [
-    defaultFallback,
-    "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
-  ],
+  src = DEFAULT_SLIDER_IMAGES,
   width = "100%",
   height = "300px",
   link,
   display = true,
-  fallback = defaultFallback,
+  fallback = DEFAULT_FALLBACK_IMAGE,
   objectFit = "cover",
   alt = "轮播图",
   style,

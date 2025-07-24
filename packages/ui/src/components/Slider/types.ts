@@ -1,5 +1,5 @@
-import type { CSSProperties, ReactNode } from "react";
 import type { CarouselProps } from "antd";
+import type { CSSProperties, ReactNode } from "react";
 
 export interface SliderProps extends CarouselProps {
   /** 轮播图图片地址数组 */

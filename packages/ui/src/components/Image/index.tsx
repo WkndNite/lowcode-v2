@@ -1,14 +1,14 @@
 import { Image as AntImage } from "antd";
-import { fallback as defaultFallback } from "./fallback";
+import { DEFAULT_FALLBACK_IMAGE, DEFAULT_IMAGE } from "@/configs";
 import type { ImageProps } from "./types";
 
 const ZmwImage: React.FC<ImageProps> = ({
-  src = "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+  src = DEFAULT_IMAGE,
   width = "100%",
   height = "300px",
   link,
   display = true,
-  fallback = defaultFallback,
+  fallback = DEFAULT_FALLBACK_IMAGE,
   objectFit = "cover",
   alt = "默认兜底",
   style,

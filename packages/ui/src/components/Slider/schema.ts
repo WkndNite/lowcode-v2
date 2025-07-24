@@ -18,7 +18,7 @@ const src = Type.Array(
     title: "轮播图片地址",
     default: [],
     description: "轮播图图片地址数组",
-  }
+  },
 );
 
 const width = Type.String({
@@ -61,7 +61,7 @@ const objectFit = Type.Union(
       { label: "原始大小", value: "none" },
       { label: "等比缩小", value: "scale-down" },
     ],
-  }
+  },
 );
 
 const alt = Type.String({
@@ -95,7 +95,7 @@ const dotPosition = Type.Union(
       { label: "左侧", value: "left" },
       { label: "右侧", value: "right" },
     ],
-  }
+  },
 );
 
 const schema = Type.Object({

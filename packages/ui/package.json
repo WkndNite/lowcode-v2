@@ -16,7 +16,8 @@
     "build:js": "vite build",
     "build:dts": "tsc --emitDeclarationOnly -p tsconfig.json",
     "build": "pnpm run build:js && pnpm run build:dts",
-    "dev": "vite build --watch"
+    "dev": "vite build --watch",
+    "test:watch": "vitest watch"
   },
   "dependencies": {
     "@ant-design/icons": "~5.6.1",
@@ -31,7 +32,10 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
     "eslint": "^9.29.0",
+    "playwright": "^1.54.1",
     "typescript": "~5.8.3",
-    "vite": "^7.0.0"
+    "vite": "^7.0.0",
+    "vitest": "^3.2.4",
+    "vitest-browser-react": "^1.0.1"
   }
 }

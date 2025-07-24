@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fallback as fallbackSvg } from "..//Image/fallback";
+import { DEFAULT_FALLBACK_IMAGE } from "@/configs";
 import type { VideoProps } from "./types";
 
 const ZmwVideo: React.FC<VideoProps> = ({
@@ -29,7 +29,7 @@ const ZmwVideo: React.FC<VideoProps> = ({
           objectFit: "cover",
         }}
       >
-        <img src={fallbackSvg} alt="视频加载失败" />
+        <img src={DEFAULT_FALLBACK_IMAGE} alt="视频加载失败" />
       </div>
     );
   }
