@@ -5,7 +5,7 @@ import type { VideoProps } from "./types";
 const ZmwVideo: React.FC<VideoProps> = ({
   src = "",
   width = "100%",
-  height = "300px",
+  height = "100px",
   controls = true,
   autoplay = false,
   display = "block",
@@ -26,10 +26,15 @@ const ZmwVideo: React.FC<VideoProps> = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          objectFit: "cover",
+          objectFit: "contain",
         }}
       >
-        <img src={DEFAULT_FALLBACK_IMAGE} alt="视频加载失败" />
+        <img
+          src={DEFAULT_FALLBACK_IMAGE}
+          alt="视频加载失败"
+          width="100px"
+          height="100px"
+        />
       </div>
     );
   }

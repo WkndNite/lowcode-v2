@@ -4,8 +4,8 @@ import type { ImageProps } from "./types";
 
 const ZmwImage: React.FC<ImageProps> = ({
   src = DEFAULT_IMAGE,
-  width = "100%",
-  height = "300px",
+  width = "20px",
+  height = "20px",
   link,
   display = true,
   fallback = DEFAULT_FALLBACK_IMAGE,
@@ -35,7 +35,7 @@ const ZmwImage: React.FC<ImageProps> = ({
       alt={alt}
       preview={false}
       fallback={fallback}
-      style={{ objectFit, width: "100%", height: "100%" }}
+      style={{ objectFit, width, height }}
       {...nativeProps}
     />
   );
