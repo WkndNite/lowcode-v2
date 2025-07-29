@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes, type ItemTypesKeys } from "@/configs/dnd/ItemTypes";
-import { AllMaterials } from "@/configs/materials";
 import "./index.less";
 import { Registry } from "@/configs/registry";
 
@@ -18,8 +17,6 @@ const DraggableItem = ({ children, type, className }: DraggableItemProps) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes[type],
     item: {
-      type,
-      render: AllMaterials.find((m) => m.dragType === type)?.render,
       component: Registry[type],
     },
     collect: (monitor) => ({

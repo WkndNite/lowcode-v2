@@ -1,7 +1,8 @@
+import { DEFAULT_TEXT } from "@/configs";
 import type { TextProps } from "./types";
 
 const ZmwText: React.FC<TextProps> = ({
-  content = "默认文本",
+  content = DEFAULT_TEXT,
   fontSize = "16px",
   color = "#333333",
   textAlign = "left",

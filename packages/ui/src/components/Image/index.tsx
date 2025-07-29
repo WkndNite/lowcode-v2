@@ -47,11 +47,12 @@ const ZmwImage: React.FC<ImageProps> = ({
       rel="noopener noreferrer"
       style={containerStyle}
       className="zmw-image"
+      data-testid="zmw-image"
     >
       {imageContent}
     </a>
   ) : (
-    <div style={containerStyle} className="zmw-image">
+    <div style={containerStyle} className="zmw-image" data-testid="zmw-image">
       {imageContent}
     </div>
   );

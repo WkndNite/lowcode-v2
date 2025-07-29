@@ -16,7 +16,9 @@ const ZmwBlank: React.FC<BlankProps> = ({
     ...sizeStyle,
   };
 
-  return <div style={containerStyle} className="zmw-blank" />;
+  return (
+    <div style={containerStyle} className="zmw-blank" data-testid="zmw-blank" />
+  );
 };
 
 export default ZmwBlank;

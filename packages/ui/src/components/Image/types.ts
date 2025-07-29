@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 
 export interface ImageProps {
   /** 图片地址 */
-  src: string;
+  src?: string;
   /** 显示宽度 */
   width?: string | number;
   /** 显示高度 */

@@ -7,10 +7,13 @@
     "format": "biome format --write .",
     "lint": "biome lint --write .",
     "check": "biome check --write .",
+    "fix": "biome check --write --unsafe .",
     "commit": "cz",
     "dev:editor": "pnpm --filter editor dev",
     "dev:ui": "pnpm --filter @lowcode/ui dev",
-    "dev": "pnpm run dev:ui & pnpm run dev:editor"
+    "dev": "pnpm run dev:ui & pnpm run dev:editor",
+    "test:watch": "pnpm --filter @lowcode/ui test:watch",
+    "test:coverage": "pnpm --filter @lowcode/ui test:coverage"
   },
   "dependencies": {
     "react": "^19.1.0",

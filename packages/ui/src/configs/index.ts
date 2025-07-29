@@ -8,3 +8,5 @@ export const DEFAULT_SLIDER_IMAGES = [
   "https://vitejs.dev/logo.svg",
   "https://vitest.dev/logo.svg",
 ];
+
+export const DEFAULT_TEXT = "默认文本";

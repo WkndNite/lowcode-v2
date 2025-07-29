@@ -28,6 +28,8 @@ const ZmwVideo: React.FC<VideoProps> = ({
           justifyContent: "center",
           objectFit: "contain",
         }}
+        className="zmw-video"
+        data-testid="zmw-video"
       >
         <img
           src={DEFAULT_FALLBACK_IMAGE}
@@ -40,7 +42,11 @@ const ZmwVideo: React.FC<VideoProps> = ({
   }
 
   return (
-    <div style={{ display, width }} className="zmw-video">
+    <div
+      style={{ display, width }}
+      className="zmw-video"
+      data-testid="zmw-video"
+    >
       <video
         src={src}
         width={width}

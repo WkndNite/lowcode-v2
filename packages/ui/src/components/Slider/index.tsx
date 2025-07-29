@@ -14,7 +14,7 @@ const ZmwSlider: React.FC<SliderProps> = ({
   style,
   nativeProps,
 }) => {
-  if (!display) return null; // 仅保留display判断
+  if (!display) return null;
 
   const containerStyle = {
     width,
@@ -26,6 +26,8 @@ const ZmwSlider: React.FC<SliderProps> = ({
 
   const sliderContent = (
     <Carousel
+      data-testid="zmw-slider"
+      className="zmw-slider"
       autoplay
       arrows
       infinite
@@ -69,14 +71,11 @@ const ZmwSlider: React.FC<SliderProps> = ({
       target="_blank"
       rel="noopener noreferrer"
       style={containerStyle}
-      className="zmw-slider"
     >
       {sliderContent}
     </a>
   ) : (
-    <div style={containerStyle} className="zmw-slider">
-      {sliderContent}
-    </div>
+    <div style={containerStyle}>{sliderContent}</div>
   );
 };
 
