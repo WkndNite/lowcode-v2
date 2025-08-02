@@ -1,7 +1,7 @@
 import { GroupOutlined, MacCommandOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Col, Collapse, type CollapseProps, Menu, Row } from "antd";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import "./index.less";
 import DraggableItem from "@/components/common/DraggableItem";
 import { AdvancedMaterials, BaseMaterials } from "@/configs/materials";
@@ -79,6 +79,10 @@ const EditorMaterials = () => {
     setActiveCategory(e.key);
   };
 
+  const activeKey = useMemo(() => {
+    return materialMap[activeCategory]?.map((item) => item.key);
+  }, [activeCategory]);
+
   return (
     <div className="editor-materials">
       <div className="editor-materials-left">
@@ -95,7 +99,11 @@ const EditorMaterials = () => {
       </div>
 
       <div className="editor-materials-right">
-        <Collapse items={materialMap[activeCategory]} ghost />
+        <Collapse
+          items={materialMap[activeCategory]}
+          ghost
+          activeKey={activeKey as string[]}
+        />
       </div>
     </div>
   );

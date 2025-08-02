@@ -5,12 +5,13 @@ import {
 } from "@ant-design/icons";
 import { Button, Divider, Select } from "antd";
 import "./index.less";
-
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
+import { useEditorStore } from "@/store/editorStore";
 
 const EditorNavigator = () => {
+  const { setDeviceType } = useEditorStore();
+  const handleChange = (value: "desktop" | "mobile") => {
+    setDeviceType(value);
+  };
   return (
     <div className="editor-navigator">
       <div className="editor-navigator-left">

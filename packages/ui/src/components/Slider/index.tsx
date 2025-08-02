@@ -4,8 +4,8 @@ import type { SliderProps } from "./types";
 
 const ZmwSlider: React.FC<SliderProps> = ({
   src = DEFAULT_SLIDER_IMAGES,
-  width = "100%",
-  height = "300px",
+  width = "400px",
+  height = "200px",
   link,
   display = true,
   fallback = DEFAULT_FALLBACK_IMAGE,
@@ -31,7 +31,7 @@ const ZmwSlider: React.FC<SliderProps> = ({
       autoplay
       arrows
       infinite
-      style={{ width: "100%", height: "100%" }}
+      style={{ width, height, margin: "auto" }}
       {...nativeProps}
     >
       {src.map((item, index) => (
@@ -42,8 +42,8 @@ const ZmwSlider: React.FC<SliderProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "100%", // 新增宽度约束
-            height: "100%", // 新增高度约束
+            width, // 新增宽度约束
+            height, // 新增高度约束
           }}
         >
           <img
@@ -54,7 +54,6 @@ const ZmwSlider: React.FC<SliderProps> = ({
               width: "200px", // 改为百分比宽度
               height: "200px", // 改为百分比高度
               display: "block", // 添加块级显示
-              margin: "auto", // 添加自动外边距
             }}
             onError={(e) => {
               (e.target as HTMLImageElement).src = fallback;

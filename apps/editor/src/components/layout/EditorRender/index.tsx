@@ -14,6 +14,7 @@ const EditRender = () => {
   const addComponent = useEditorStore((state) => state.addComponent);
   const selectComponent = useEditorStore((state) => state.selectComponent);
   const selectedId = useEditorStore((state) => state.selectedId);
+  const deviceType = useEditorStore((state) => state.deviceType);
 
   console.group("渲染区组件列表");
   console.log("components", components);
@@ -50,45 +51,56 @@ const EditRender = () => {
 
   return (
     <div
-      ref={ref}
-      className="editor-render"
+      className={`editor-render `}
       style={{
-        backgroundColor: isOver ? "#bae7ff" : canDrop ? "#e6f7ff" : "#fff",
-        transition: "background-color 0.2s",
-        minHeight: 300,
-        padding: 16,
+        padding: 20,
+        background: deviceType === "mobile" ? "#f5f5f5" : "#fff",
       }}
     >
-      {components.length === 0 ? (
-        <Empty />
-      ) : (
-        components.map((comp) => (
-          <div
-            key={comp.id}
-            onClick={() => selectComponent(comp.id)}
-            style={{
-              border:
-                comp.id === selectedId
-                  ? "1px solid #1890ff"
-                  : "1px dashed #ccc",
-              padding: 8,
-              marginBottom: 8,
-              cursor: "pointer",
-            }}
-          >
-            {/* component: {comp.component.toString()} */}
-            {/* 渲染comp.component */}
-            <comp.component
-              {...comp.props}
+      <div
+        ref={ref}
+        className={`${
+          deviceType === "mobile" ? "data-type-mobile" : "data-type-desktop"
+        }`}
+        style={{
+          width: deviceType === "mobile" ? "60%" : "100%",
+          height: "100%",
+          padding: 12,
+          margin: "auto",
+          backgroundColor: isOver ? "#bae7ff" : canDrop ? "#e6f7ff" : "#fff",
+          transition: "background-color 0.2s",
+        }}
+      >
+        {components.length === 0 ? (
+          <Empty />
+        ) : (
+          components.map((comp) => (
+            <div
+              key={comp.id}
+              onClick={() => selectComponent(comp.id)}
               style={{
-                width: "100%",
-                height: "100%",
-                boxSizing: "border-box",
+                border:
+                  comp.id === selectedId
+                    ? "1px solid #1890ff"
+                    : "1px dashed #ccc",
+                padding: 8,
+                marginBottom: 8,
+                cursor: "pointer",
               }}
-            />
-          </div>
-        ))
-      )}
+            >
+              {/* 渲染comp.component */}
+              <comp.component
+                {...comp.props}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  boxSizing: "border-box",
+                }}
+              />
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };

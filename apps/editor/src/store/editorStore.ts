@@ -23,6 +23,10 @@ type EditorState = {
    */
   isConfigPanelVisible: boolean;
   /**
+   * 设备类型
+   */
+  deviceType: "desktop" | "mobile";
+  /**
    * 添加一个组件到渲染区
    * @param comp 组件对象
    */
@@ -42,12 +46,17 @@ type EditorState = {
    * 切换配置区域显示状态
    */
   toggleConfigPanel: () => void;
+  /**
+   * 设置设备类型
+   */
+  setDeviceType: (type: "desktop" | "mobile") => void;
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
   components: [],
   selectedId: null,
   isConfigPanelVisible: true, // 默认显示配置区域
+  deviceType: "desktop",
 
   addComponent: (comp) =>
     set((state) => ({
@@ -69,4 +78,8 @@ export const useEditorStore = create<EditorState>((set) => ({
     set((state) => ({
       isConfigPanelVisible: !state.isConfigPanelVisible,
     })),
+  setDeviceType: (type) => {
+    set({ deviceType: type });
+    set({ isConfigPanelVisible: type === "mobile" });
+  },
 }));
