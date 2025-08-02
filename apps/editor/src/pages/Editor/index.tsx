@@ -15,8 +15,10 @@ const Editor = () => {
         </header>
         <main>
           <EditorMaterials />
-          <EditorRender />
-          <EditorConfig />
+          <div className="editor-content-wrapper">
+            <EditorRender />
+            <EditorConfig />
+          </div>
         </main>
       </DndProvider>
     </div>

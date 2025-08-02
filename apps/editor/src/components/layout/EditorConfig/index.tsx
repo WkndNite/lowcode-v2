@@ -19,11 +19,14 @@ const EditorConfig = () => {
         className="config-panel-toggle"
       />
       {/* 原有配置内容 */}
-      {isConfigPanelVisible && (
-        <div className="editor-config">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
-        </div>
-      )}
+      <div
+        className="editor-config"
+        style={{
+          width: isConfigPanelVisible ? "var(--editor-config-width)" : 0,
+        }}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
+      </div>
     </>
   );
 };

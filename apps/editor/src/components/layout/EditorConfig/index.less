@@ -1,4 +1,7 @@
 .editor-config {
-    flex: 1;
+    width: var(--editor-config-width);
     border-left: 1px solid var(--border-color);
+
+    // 隐藏显示切换 加一个自然的过渡
+    transition: width 0.3s ease-in-out;
 }

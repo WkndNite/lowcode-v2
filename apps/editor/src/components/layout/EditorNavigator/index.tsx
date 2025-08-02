@@ -19,7 +19,7 @@ const EditorNavigator = () => {
         </Button>
         <Divider type="vertical" />
         <Select
-          defaultValue="lucy"
+          defaultValue="desktop"
           style={{ width: 120 }}
           onChange={handleChange}
           options={[
