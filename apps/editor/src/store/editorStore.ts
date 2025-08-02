@@ -19,6 +19,10 @@ type EditorState = {
    */
   selectedId: string | null;
   /**
+   * 配置区域是否显示
+   */
+  isConfigPanelVisible: boolean;
+  /**
    * 添加一个组件到渲染区
    * @param comp 组件对象
    */
@@ -34,11 +38,16 @@ type EditorState = {
    * @param newProps 新的属性对象
    */
   updateComponentProps: (id: string, newProps: Record<string, unknown>) => void;
+  /**
+   * 切换配置区域显示状态
+   */
+  toggleConfigPanel: () => void;
 };
 
 export const useEditorStore = create<EditorState>((set) => ({
   components: [],
   selectedId: null,
+  isConfigPanelVisible: true, // 默认显示配置区域
 
   addComponent: (comp) =>
     set((state) => ({
@@ -52,7 +61,12 @@ export const useEditorStore = create<EditorState>((set) => ({
       components: state.components.map((comp) =>
         comp.id === id
           ? { ...comp, props: { ...comp.props, ...newProps } }
-          : comp,
+          : comp
       ),
+    })),
+
+  toggleConfigPanel: () =>
+    set((state) => ({
+      isConfigPanelVisible: !state.isConfigPanelVisible,
     })),
 }));

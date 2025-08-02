@@ -1,4 +1,12 @@
-import { ZmwBlank, ZmwImage, ZmwSlider, ZmwText, ZmwVideo } from "@lowcode/ui";
+import {
+  ZmwBlank,
+  ZmwColumns,
+  ZmwImage,
+  ZmwRows,
+  ZmwSlider,
+  ZmwText,
+  ZmwVideo,
+} from "@lowcode/ui";
 import { ItemTypesKeys } from "@/configs/dnd/ItemTypes";
 
 export const Registry = {
@@ -7,7 +15,7 @@ export const Registry = {
   [ItemTypesKeys.VIDEO]: ZmwVideo,
   [ItemTypesKeys.SLIDER]: ZmwSlider,
   [ItemTypesKeys.BLANK]: ZmwBlank,
-  [ItemTypesKeys.ROWS]: ZmwImage,
-  [ItemTypesKeys.COLUMNS]: ZmwImage,
+  [ItemTypesKeys.ROWS]: ZmwRows,
+  [ItemTypesKeys.COLUMNS]: ZmwColumns,
   [ItemTypesKeys.CANVAS]: ZmwImage,
 };

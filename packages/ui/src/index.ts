@@ -1,8 +1,12 @@
 // 组件
 import { default as ZmwBlank } from "@/components/Blank";
 import { BlankSchema } from "@/components/Blank/schema";
+import { default as ZmwColumns } from "@/components/Columns";
+import { ColumnsSchema } from "@/components/Columns/schema";
 import { default as ZmwImage } from "@/components/Image";
 import { ImageSchema } from "@/components/Image/schema";
+import { default as ZmwRows } from "@/components/Rows";
+import { RowsSchema } from "@/components/Rows/schema";
 import { default as ZmwSlider } from "@/components/Slider";
 import { SliderSchema } from "@/components/Slider/schema";
 import { default as ZmwText } from "@/components/Text";
@@ -13,7 +17,15 @@ import { VideoSchema } from "@/components/Video/schema";
 // 函数方法
 import { getSchema as _getSchema } from "@/utils/schema";
 
-export { ZmwImage, ZmwText, ZmwVideo, ZmwSlider, ZmwBlank };
+export {
+  ZmwImage,
+  ZmwText,
+  ZmwVideo,
+  ZmwSlider,
+  ZmwBlank,
+  ZmwColumns,
+  ZmwRows,
+};
 
 export const schemas = {
   ImageSchema,
@@ -21,6 +33,8 @@ export const schemas = {
   VideoSchema,
   SliderSchema,
   BlankSchema,
+  ColumnsSchema,
+  RowsSchema,
 };
 
 export const getSchema = _getSchema;

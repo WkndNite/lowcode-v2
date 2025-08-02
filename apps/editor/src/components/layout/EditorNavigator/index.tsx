@@ -23,10 +23,8 @@ const EditorNavigator = () => {
           style={{ width: 120 }}
           onChange={handleChange}
           options={[
-            { value: "jack", label: "Jack" },
-            { value: "lucy", label: "Lucy" },
-            { value: "Yiminghe", label: "yiminghe" },
-            { value: "disabled", label: "Disabled", disabled: true },
+            { value: "desktop", label: "桌面端" },
+            { value: "mobile", label: "移动端" },
           ]}
         />
       </div>
