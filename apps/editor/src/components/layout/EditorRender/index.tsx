@@ -1,11 +1,10 @@
-/** biome-ignore-all lint/a11y/useKeyWithClickEvents: 1 */
-/** biome-ignore-all lint/a11y/noStaticElementInteractions: 2*/
-// @ts-nocheck
+//@ts-nocheck
 import { Empty } from "antd";
 import { useEffect, useRef } from "react";
 import { useDrop } from "react-dnd";
 import { ItemTypes } from "@/configs/dnd/ItemTypes";
 import "./index.less";
+import { v4 as uuidv4 } from "uuid";
 import { useEditorStore } from "@/store/editorStore";
 
 const EditRender = () => {
@@ -16,20 +15,13 @@ const EditRender = () => {
   const selectedId = useEditorStore((state) => state.selectedId);
   const deviceType = useEditorStore((state) => state.deviceType);
 
-  console.group("渲染区组件列表");
-  console.log("components", components);
-  console.log("selectedId", selectedId);
-  console.log("addComponent", addComponent);
-  console.log("selectComponent", selectComponent);
-  console.groupEnd();
-
   const [{ isOver, canDrop }, drop] = useDrop(() => ({
     accept: Object.values(ItemTypes),
     drop: (item, monitor) => {
       console.log("Dropped item:", item);
       console.log("monitor", monitor);
       addComponent({
-        id: Math.random().toString(36).substr(2, 9), // 生成一个随机ID
+        id: uuidv4(),
         type: item.type,
         name: item.render,
         component: item.component,
@@ -75,9 +67,10 @@ const EditRender = () => {
           <Empty />
         ) : (
           components.map((comp) => (
-            <div
+            <main
               key={comp.id}
               onClick={() => selectComponent(comp.id)}
+              onKeyUp={(e) => console.log("1", e.key)}
               style={{
                 border:
                   comp.id === selectedId
@@ -97,7 +90,7 @@ const EditRender = () => {
                   boxSizing: "border-box",
                 }}
               />
-            </div>
+            </main>
           ))
         )}
       </div>

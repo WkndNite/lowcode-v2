@@ -70,7 +70,7 @@ export const useEditorStore = create<EditorState>((set) => ({
       components: state.components.map((comp) =>
         comp.id === id
           ? { ...comp, props: { ...comp.props, ...newProps } }
-          : comp
+          : comp,
       ),
     })),
 

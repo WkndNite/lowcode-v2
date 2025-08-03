@@ -1,10 +1,18 @@
 import { useEditorStore } from "@/store/editorStore";
 import "./index.less";
-import { FloatButton } from "antd";
 import { CloseOutlined, SettingOutlined } from "@ant-design/icons";
+import { BlankSchema } from "@lowcode/ui/src/components/Blank/schema";
+import { FloatButton, Typography } from "antd";
+import { useEffect } from "react";
+import { materialSchemas } from "@/configs/materials/schemas";
 
 const EditorConfig = () => {
-  const { isConfigPanelVisible, toggleConfigPanel } = useEditorStore();
+  const { isConfigPanelVisible, toggleConfigPanel, selectedId } =
+    useEditorStore();
+
+  useEffect(() => {
+    console.log("💺", selectedId);
+  }, [selectedId]);
 
   return (
     <>
@@ -25,7 +33,17 @@ const EditorConfig = () => {
           width: isConfigPanelVisible ? "var(--editor-config-width)" : 0,
         }}
       >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
+        <Typography>
+          <Typography.Title
+            level={4}
+            style={{
+              marginLeft: 20,
+            }}
+          >
+            组件配置
+          </Typography.Title>
+        </Typography>
+        {}
       </div>
     </>
   );
