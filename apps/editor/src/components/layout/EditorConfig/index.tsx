@@ -1,10 +1,8 @@
 import { useEditorStore } from "@/store/editorStore";
 import "./index.less";
 import { CloseOutlined, SettingOutlined } from "@ant-design/icons";
-import { BlankSchema } from "@lowcode/ui/src/components/Blank/schema";
 import { FloatButton, Typography } from "antd";
 import { useEffect } from "react";
-import { materialSchemas } from "@/configs/materials/schemas";
 
 const EditorConfig = () => {
   const { isConfigPanelVisible, toggleConfigPanel, selectedId } =
