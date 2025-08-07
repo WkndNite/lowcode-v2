@@ -1,5 +1,5 @@
-import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
-import * as Joi from 'joi';
+import { BadRequestException, Injectable, PipeTransform } from "@nestjs/common";
+import * as Joi from "joi";
 
 @Injectable()
 export class JoiValidationPipe<T = unknown> implements PipeTransform<T, T> {
