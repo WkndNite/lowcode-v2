@@ -1,8 +1,22 @@
-import { Body, Controller, Post, UsePipes } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  UseGuards,
+  UsePipes,
+} from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
+import { user } from "@prisma/client";
 import { JoiValidationPipe } from "../common/joi-validation.pipe";
 import { ApiResponse } from "../common/response";
 import { createUserSchema, loginSchema } from "./auth.schema";
 import { AuthService } from "./auth.service";
+
+export interface RequestWithUser extends Request {
+  user: user;
+}
 
 @Controller("auth")
 export class AuthController {
@@ -26,5 +40,20 @@ export class AuthController {
   async login(@Body() body: { username: string; password: string }) {
     const result = await this.authService.login(body.username, body.password);
     return ApiResponse.success(result, "登录成功");
+  }
+
+  // GitHub登录
+  @Get("github")
+  @UseGuards(AuthGuard("github"))
+  githubLogin() {
+    // 重定向到GitHub授权页面
+  }
+
+  // GitHub回调
+  @Get("github/callback")
+  @UseGuards(AuthGuard("github"))
+  async githubCallback(@Req() req: RequestWithUser) {
+    const result = await this.authService.generateGithubToken(req.user);
+    return ApiResponse.success(result, "GitHub登录成功");
   }
 }

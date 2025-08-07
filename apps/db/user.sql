@@ -11,7 +11,11 @@ CREATE TABLE IF NOT EXISTS user (
   role ENUM('admin', 'editor', 'user') DEFAULT 'user' COMMENT '用户角色',
   status ENUM('active', 'inactive', 'deleted') DEFAULT 'active' COMMENT '账号状态',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  -- 添加GitHub认证相关字段
+  github_id INT UNIQUE COMMENT 'GitHub用户ID',
+  github_login VARCHAR(50) UNIQUE COMMENT 'GitHub用户名',
+  github_info JSON COMMENT 'GitHub用户信息'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
 -- 插入测试数据
