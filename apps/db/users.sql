@@ -1,9 +1,12 @@
 -- 使用test数据库
 USE test;
 
--- 创建user表
+-- 删除旧的user表
+DROP TABLE IF EXISTS user;
+
+-- 创建新的user表，使用随机字符串作为id
 CREATE TABLE IF NOT EXISTS user (
-  id INT PRIMARY KEY AUTO_INCREMENT COMMENT '用户ID',
+  id VARCHAR(36) PRIMARY KEY COMMENT '用户ID (随机字符串)',
   username VARCHAR(50) NOT NULL UNIQUE COMMENT '用户名',
   password VARCHAR(255) NOT NULL COMMENT '密码（加密存储）',
   email VARCHAR(100) UNIQUE COMMENT '电子邮箱',
@@ -12,13 +15,26 @@ CREATE TABLE IF NOT EXISTS user (
   status ENUM('active', 'inactive', 'deleted') DEFAULT 'active' COMMENT '账号状态',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  -- 添加GitHub认证相关字段
+  disabled BOOLEAN DEFAULT FALSE COMMENT '是否禁用',
+  -- GitHub认证相关字段
   github_id INT UNIQUE COMMENT 'GitHub用户ID',
   github_login VARCHAR(50) UNIQUE COMMENT 'GitHub用户名',
   github_info JSON COMMENT 'GitHub用户信息'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
--- 插入测试数据
+-- 创建触发器，自动生成UUID作为id
+DELIMITER $$
+CREATE TRIGGER before_user_insert
+BEFORE INSERT ON user
+FOR EACH ROW
+BEGIN
+  IF NEW.id IS NULL OR NEW.id = '' THEN
+    SET NEW.id = UUID();
+  END IF;
+END$$
+DELIMITER ;
+
+-- 插入测试数据（不指定id，让触发器自动生成）
 INSERT INTO user (username, password, email, phone, role, status) VALUES
 (
   'admin',

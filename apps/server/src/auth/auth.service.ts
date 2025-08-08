@@ -4,7 +4,7 @@ import {
   UnauthorizedException,
 } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { user } from "@prisma/client";
+import { user, user_role } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 import { Profile } from "passport-github2";
 import { PrismaService } from "../prisma/prisma.service";
@@ -16,7 +16,12 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async register(username: string, password: string, email?: string) {
+  async register(
+    username: string,
+    password: string,
+    email?: string,
+    role?: user_role,
+  ) {
     // 检查用户是否已存在
     const existingUser = await this.prisma.user.findUnique({
       where: { username },
@@ -28,12 +33,13 @@ export class AuthService {
     // 哈希密码
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 创建新用户
+    // 创建新用户，如果未指定角色则默认为'user'
     const user = await this.prisma.user.create({
       data: {
         username,
         password: hashedPassword,
         email,
+        role: role || ("user" as user_role), // 添加角色参数，默认为'user'
       },
       select: {
         id: true,
@@ -53,6 +59,11 @@ export class AuthService {
     });
     if (!user) {
       throw new UnauthorizedException("用户不存在");
+    }
+
+    // 检查用户是否被禁用
+    if (user.disabled) {
+      throw new UnauthorizedException("用户已被禁用");
     }
 
     // 验证密码
@@ -80,15 +91,23 @@ export class AuthService {
     };
   }
 
-  async validateUser(userId: number) {
-    return this.prisma.user.findUnique({
+  async validateUser(userId: string) {
+    const user = await this.prisma.user.findUnique({
       where: { id: userId },
       select: {
         id: true,
         username: true,
         role: true,
+        disabled: true,
       },
     });
+
+    // 如果用户不存在或被禁用，返回null
+    if (!user || user.disabled) {
+      return null;
+    }
+
+    return user;
   }
 
   // GitHub登录/注册
@@ -143,6 +162,11 @@ export class AuthService {
 
   // 生成GitHub登录后的JWT令牌
   async generateGithubToken(user: user) {
+    // 检查用户是否被禁用
+    if (user.disabled) {
+      throw new UnauthorizedException("用户已被禁用");
+    }
+
     const payload = { sub: user.id, username: user.username, role: user.role };
     return {
       access_token: this.jwtService.sign(payload),
@@ -154,5 +178,31 @@ export class AuthService {
         phone: user.phone,
       },
     };
+  }
+
+  // 获取用户列表
+  async getUsers() {
+    return this.prisma.user.findMany({
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        role: true,
+        status: true,
+        disabled: true, // 添加这一行
+        created_at: true,
+      },
+      orderBy: {
+        created_at: "desc",
+      },
+    });
+  }
+
+  // 禁用用户
+  async disableUser(id: string) {
+    return this.prisma.user.update({
+      where: { id },
+      data: { disabled: true },
+    });
   }
 }

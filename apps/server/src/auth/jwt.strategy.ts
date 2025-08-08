@@ -12,10 +12,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: { sub: number }) {
+  async validate(payload: { sub: string }) {
     const user = await this.authService.validateUser(payload.sub);
     if (!user) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException("用户不存在或已被禁用");
     }
     return user;
   }

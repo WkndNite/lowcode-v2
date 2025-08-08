@@ -21,7 +21,9 @@ export class GithubStrategy extends PassportStrategy(Strategy, "github") {
     _refreshToken: string,
     profile: Profile,
   ) {
+    console.log("GitHub profile received:", profile);
     const user = await this.authService.findOrCreateGithubUser(profile);
+    console.log("User created/found:", user);
     return user;
   }
 }
